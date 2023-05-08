@@ -51,4 +51,36 @@ docker run sachin404/django-authentication
 ```
 Now go to the browser and enter  `http://localhost:8000/` you will get to the homepage of the app.
 
+## 2. Set up EC2 Instance
+Now that we have tested it locally, we will use the same steps to setup the project on AWS EC2 instance. 
+
+Login to your AWS acoount and create an EC2 instance and connect with your terminal using SSH.
+
+Before heading further go to EC2 dashboard > security groups > action > edit inbound rules and add custom TCP as following to allow traffic from everywhere.
+
+![security group](img/2.png)
+
+Now connect to your terminal using SSH. It should look something like this
+
+![terminal](img/3.png)
+
+By now we have succesfully launched an EC2 instance and connected with the terminal. To countinue working with our project lets create a new directory and go to that directory by running the following commands:
+```
+mkdir authentication-app
+cd authentication-app
+```
+Now clone the project repository by running the following command:
+```
+git clone https://github.com/sachin-404/django-user-authentication.git
+```
+Run `cd django-user-authentication` to go to the project directory. Run `ls` command to see the files.
+
+![terminal](img/4.png)
+
+Now we will modify `settings.py` file so that all IPs are allowed. For that run `nano authentication/settings.py` to open the file. Look for `ALLOWED_HOSTS=[]` and change it to `ALLOWED_HOSTS = ['*']` as following
+
+![allowed_host](img/5.png)
+
+By now we have succesfully set up our project on EC2 Instance.
+
 
