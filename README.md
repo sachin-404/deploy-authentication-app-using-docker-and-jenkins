@@ -83,37 +83,4 @@ Now we will modify `settings.py` file so that all IPs are allowed. For that run 
 
 By now we have succesfully set up our project on EC2 Instance.
 
-## 3. Set up Docker
-
-- Install Docker by running the following command
-```
-sudo apt install docker.io
-```
-- After the Docker is succesfully installed we will use Dockerfile to create a docker image and run the app as a docker container.
-
-- Dockerfile is already created, you can view it by running the following command
-```
-vi Dockerfile
-```
-![dockerfile](img/6.png)
-
-- Build the docker image by running the following command
-```
-sudo docker build -t authentication-app .
-```
-
-- Run `sudo docker images` after the build is completed to check the built image.
-
-![docker_images](img/7.png)
-
-- Now run the following command to run the docker container
-```
-sudo docker run -p 8000:8000 authentication-app
-```
-
-- Now go to your EC2 instance and copy public IP address. Go open your browser and go to `<Public-IP>:8000`. Replace `<PublicIP>` with the IP address of your instance. For example it is `18.139.163.5:8000`. 
-
-![docker_images](img/8.png)
-
-By now we have built docker image and run our containerized app on EC2 instance. In the next part we will set up CI-CD pipeline for our project using Jenkins.
 
