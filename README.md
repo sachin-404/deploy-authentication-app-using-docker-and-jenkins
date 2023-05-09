@@ -166,3 +166,30 @@ If everything goes well the output will be something like this
 
 By now Jenkins is successfully installed and configured.Next we will set up gihub repository with jenkins.
 
+## 5. Integrate GitHub with Jenkins
+
+### create github personal access token
+- go to github > settings > developer settings > personal access token > create new token
+- name it anything you want and check **repo** and **workflow** fields and click on generate token
+- make sure to copy your token and keep it somewhere safe as you will not be seeing it again
+
+### push code to github
+- to set up a cicd pipeline you first need to push code to github. For that create a new repository and name it anything you want. Once created copy the url
+- Go to your terminal (make sure it is connected to the EC2 instance and you are in the root directory of the project) and run the following command
+```
+git remote set-url origin <your repo url>
+```
+here replace `<your repo url>` with the url of your created repository
+
+- Now run all the necessary add, commit and push command. When asked for username and password, enter your github username and for password enter the personal access token you just created
+
+### Integrate Jenkins with github
+- Open jenkins on your browser
+- Go to Manage Jenkins > Configure System > Scroll down to GitHub > click on add github server
+- Fill all the necessary fields and in place of credentials, add new credentials
+- A new pop up menu will open for adding the credentials. In the **Kind** drop down menu select **secret text**. In the **Secret** field enter the github personal access token and give it any name in the ID section 
+
+![jenkins](img/13.png)
+
+- Add the credentials and select it. Now click on **Test connection** button to test it.
+- Save it and now you have successfully integrated jenkins with github.
