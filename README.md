@@ -117,3 +117,52 @@ sudo docker run -p 8000:8000 authentication-app
 
 By now we have built docker image and run our containerized app on EC2 instance. In the next part we will set up CI-CD pipeline for our project using Jenkins.
 
+## 4. Install and set up Jenkins
+- update your system by running the following commands
+```
+sudo apt update
+suod apt upgrade
+```
+- install Java
+```
+sudo apt install openjdk-11-jre 
+```
+- Run following commands to install Jenkins
+```
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+```
+```
+sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+```
+```
+sudo apt update
+```
+```
+sudo apt install jenkins
+```
+- Start Jenkins
+```
+sudo systemctl start jenkins
+```
+```
+sudo systemctl status jenkins
+```
+
+If everything goes well the output will be something like this
+![jenkins_status](img/9.png)
+
+- Before heading further add port 8080 to inbound rules in security groups similar to we did for port 8000
+
+![jenkins](img/10.png)
+
+- Now open jenkins in browser on port 8080
+- when you open for the first time it will ask for password. Run `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` to get the key.
+
+![jenkins](img/11.png)
+
+- install suggested plugins and follow instructions to set up the admin user. After the setup is done the homepage should look like this
+
+![jenkins](img/12.png)
+
+By now Jenkins is successfully installed and configured.Next we will set up gihub repository with jenkins.
+
