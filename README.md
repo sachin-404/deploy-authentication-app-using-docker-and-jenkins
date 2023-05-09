@@ -193,3 +193,25 @@ here replace `<your repo url>` with the url of your created repository
 
 - Add the credentials and select it. Now click on **Test connection** button to test it.
 - Save it and now you have successfully integrated jenkins with github.
+
+## 6. Set up CICD pipeline
+
+- Open jenkins in your brower. Create a new freestyle project. Enter repository url in source code management. As we had already created credentials, do not enter anything in that field it will automatically pick that.
+- Enter the branch name. In my case it is main branch hence I am entering "main".
+
+![jenkins](img/14.png)
+
+- In the build step, create **Execute shell** to execute our docker build build and run commands.
+```
+sudo docker build -t authenticaion-app .
+sudo docker run -d -p 8000:8000 authentication-app
+```
+- Now we are all set just click on **Build Now** to start the build. You can see the progress by clicking on the console output. You will get the success message if the build is completed successfully.
+
+![jenkins](img/15.png)
+
+- Go the browser and now you can see your app is running succesfully
+
+![jenkins](img/16.png)
+
+- The cicd pipeline has been set successfully and if we commit any changes to the code we will just have to click on the build button in jenkins and the changes will reflect on the website.
